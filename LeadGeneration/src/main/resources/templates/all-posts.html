@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LeadTarget</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <img src="assets/img/logo.png" alt="" />
+          <h1 class="sitename">LeadTarget</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#recent-posts">Post</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+
+            <li class="dropdown"><a href="#"><span>Sign In</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul>
+                <li><a href="User Dashboard/user-login.html">User</a></li>
+                <li><a href="Company Dashboard/company-login.html">Admin</a></li>
+              </ul>
+            </li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <div style="height: 75px" class="bg-dark"></div>
+
+    <div class="container my-3 fw-bold" data-aos="fade-up">
+      <h2>All Posts</h2>
+    </div>
+
+    <div class="container">
+      <!-- single post card start -->
+      <div class="container p-2 mb-3 row row-cols-1" data-aos="fade-up">
+        <div class="col col-md-4">
+          <img
+            src="./assets/img/working-1.jpg"
+            class="img-fluid rounded-2"
+            alt=""
+          />
+        </div>
+        <div class="col col-md-8 mt-3 mt-md-0 px-4">
+          <h3 class="fw-bold">Ethical Hacking Courses and Training</h3>
+          <p>
+            Unlock the secrets of cybersecurity with our Ethical Hacking
+            Fundamentals course. Designed for aspiring security professionals,
+            this course provides a comprehensive introduction to ethical hacking
+            concepts, tools, and techniques. Participants will learn how to
+            think like a hacker to better defend against cyber threats, ensuring
+            the protection of systems and sensitive data.
+          </p>
+
+          <p class="fw-bold fs-5">Amount : <span>$15000</span></p>
+          <div class="d-flex align-items-center gap-3">
+            <button class="buttoncss ms-0" onclick="toggleLink(this)">
+              Get a Link
+            </button>
+            <p class="mb-0 d-none link">
+              <span class="fw-bold">Link:</span> <a href="CustomerForm.html">asdfghjklpoiuytrewqzxcvbnm</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- single post card end -->
+ <div class="container">
+    <div id="all-posts" class="row">
+        <!-- All posts will be displayed here without referral links -->
+    </div>
+</div>
+      <!-- single post card start -->
+      <div class="container p-2 mb-3 row row-cols-1" data-aos="fade-up">
+        <div class="col col-md-4">
+          <img
+            src="./assets/img/working-1.jpg"
+            class="img-fluid rounded-2"
+            alt=""
+          />
+        </div>
+        <div class="col col-md-8 mt-3 mt-md-0 px-4">
+          <h3 class="fw-bold">Ethical Hacking Courses and Training</h3>
+          <p>
+            Unlock the secrets of cybersecurity with our Ethical Hacking
+            Fundamentals course. Designed for aspiring security professionals,
+            this course provides a comprehensive introduction to ethical hacking
+            concepts, tools, and techniques. Participants will learn how to
+            think like a hacker to better defend against cyber threats, ensuring
+            the protection of systems and sensitive data.
+          </p>
+
+          <p class="fw-bold fs-5">Amount : <span>$15000</span></p>
+          <div class="d-flex align-items-center gap-3">
+            <button class="buttoncss ms-0" onclick="toggleLink(this)">
+              Get a Link
+            </button>
+            <p class="mb-0 d-none link">
+              <span class="fw-bold">Link:</span> <a href="CustomerForm.html">asdfghjklpoiuytrewqzxcvbnm</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- single post card end -->
+    </div>
+    
+    
+    
+    
+
+    <footer id="footer" class="footer dark-background">
+      <div class="container">
+        <h3 class="sitename">LeadTarget</h3>
+        <p>
+          Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni
+          eligendi fuga maxime saepe commodi placeat.
+        </p>
+        <div class="social-links d-flex justify-content-center">
+          <a href=""><i class="bi bi-twitter-x"></i></a>
+          <a href=""><i class="bi bi-facebook"></i></a>
+          <a href=""><i class="bi bi-instagram"></i></a>
+          <a href=""><i class="bi bi-skype"></i></a>
+          <a href=""><i class="bi bi-linkedin"></i></a>
+        </div>
+        <div class="container">
+          <div class="copyright">
+            <span>Copyright</span>
+            <strong class="px-1 sitename">LeadTarget</strong>
+            <span>All Rights Reserved</span>
+          </div>
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you've purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            Designed by <a href="https://bootstrapmade.com/">DChronicles</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+      // let linkSection = document.getElementById("link-section");
+      // let showLinkBtn = document.getElementById("show-link");
+
+      // // function showLink() {
+      // //   linkContainer.addEventListener('click')
+      // //   linkSection.classList.remove("d-none");
+      // // }
+
+      // showLinkBtn.addEventListener("click", (e) => {
+      //   e.target.nextElementSibling.classList.remove("d-none");
+      // });
+
+      function toggleLink(button) {
+        const linkParagraph = button.nextElementSibling;
+
+        if (linkParagraph.classList.contains("d-none")) {
+          linkParagraph.classList.remove("d-none");
+        } else {
+          linkParagraph.classList.add("d-none");
+        }
+      }
+    </script>
+  </body>
+</html>
