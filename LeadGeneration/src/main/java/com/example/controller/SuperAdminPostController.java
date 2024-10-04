@@ -93,6 +93,8 @@ public class SuperAdminPostController {
 package com.example.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,11 +171,23 @@ public class SuperAdminPostController {
         post.setTime(time);
         post.setAmount(amount); // Set the amount for the post
 
-        // Handle image upload if needed
+//        // Handle image upload if needed
+//        if (!image.isEmpty()) {
+//            try {
+//                String fileName = firebaseStorageService.uploadFile(image, "super post image");
+//                post.setImage(fileName); // Save the URL of the uploaded image in the post
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
         if (!image.isEmpty()) {
             try {
+                // Upload the file and get the public URL
                 String fileName = firebaseStorageService.uploadFile(image, "super post image");
-                post.setImage(fileName); // Save the URL of the uploaded image in the post
+                
+                // Store the public URL directly in the post
+                post.setImage(fileName); 
             } catch (IOException e) {
                 e.printStackTrace();
             }

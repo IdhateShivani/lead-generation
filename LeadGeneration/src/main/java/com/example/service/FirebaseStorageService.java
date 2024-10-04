@@ -61,6 +61,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 @Service
@@ -80,7 +82,7 @@ public class FirebaseStorageService {
                     .getService();
         }
     }
-
+/*
     // Method to upload the file to a specific folder
     public String uploadFile(MultipartFile file, String folderName) throws IOException {
         // Generate a unique file name
@@ -100,7 +102,36 @@ public class FirebaseStorageService {
         // Return the public URL for the uploaded file
         return String.format("https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media", bucketName, fullPath);
     }
+*/
 
+
+
+    // Method to upload the file to a specific folder
+    public String uploadFile(MultipartFile file, String folderName) throws IOException {
+        // Generate a unique file name
+        String fileName = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
+        
+        // Encode the file name to handle spaces and special characters
+        String encodedFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString());
+
+        // Combine folder path and file name (e.g., "company form image/unique-filename.jpg")
+        String fullPath = folderName + "/" + encodedFileName;
+
+        // Create a BlobInfo object to define the blob's metadata
+        BlobInfo blobInfo = BlobInfo.newBuilder(bucketName, fullPath)
+                .setContentType(file.getContentType())
+                .build();
+
+        // Upload the file to Firebase Storage
+        storage.create(blobInfo, file.getBytes());
+
+        // Return the public URL for the uploaded file
+        // Encode the full path again for the URL
+        String encodedFullPath = URLEncoder.encode(fullPath, StandardCharsets.UTF_8.toString());
+        
+        return String.format("https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media", bucketName, encodedFullPath);
+    }
+    
     public static String uploadFile(byte image) {
         return null; // Keeping this static method as per your structure
     }
