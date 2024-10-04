@@ -80,7 +80,7 @@ public class SuperAdminPost {
     private String title;
     private String description;
     private String department;
-    private String image; // Ensure this is updated to match your DB structure
+    private String image; 
    
     private String date;
     private String time;

@@ -1,90 +1,16 @@
-//package com.example.controller;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PostMapping;
-//
-//import com.example.ContactUs;
-//import com.example.repository.ContactUsRepository;
-//@Controller
-//public class ContactUsController {
-//	
-//	 @Autowired
-//	    private ContactUsRepository contactUsRepository;
-//
-//	 @GetMapping("/contact")
-//	 public String showContactForm(Model model) {
-//	     // Prepare to show the contact form
-//	     return "contact"; // The name of your contact form view
-//	 }
-//
-//	    @PostMapping("/contact")
-//	    public String submitContactUsForm(@ModelAttribute ContactUs contactUs) {
-//	        // Save the form data to the database
-//	        contactUsRepository.save(contactUs);
-//	        
-//	        // Redirect to the success page
-//	        return "redirect:/success";
-//	    }
-//	}
-//
-//package com.example.controller;
-//
-//import java.util.List;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//import com.example.ContactUs;
-//import com.example.repository.ContactUsRepository;
-//
-//@RestController // Change from @Controller to @RestController for REST API handling
-//public class ContactUsController {
-//
-//    @Autowired
-//    private ContactUsRepository contactUsRepository;
-//
-//    // Handle GET requests to show the form in a web browser
-//    @GetMapping("/api/contact") // Change this URL as needed
-//    public List<ContactUs> getAllContactEntries() {
-//        return contactUsRepository.findAll(); // Return the list of contacts as JSON
-//    }
-//
-//    // Handle POST request from Postman or other clients sending JSON data
-//    @PostMapping("/contact")
-//    public ResponseEntity<String> submitContactUsForm(@RequestBody ContactUs contactUs) {
-//        // Debugging: print the values received
-//        System.out.println("Full Name: " + contactUs.getFullname());
-//        System.out.println("Email: " + contactUs.getEmail());
-//        System.out.println("Phone Number: " + contactUs.getPhonenumber());
-//        System.out.println("Message: " + contactUs.getMessage());
-//
-//        // Save the form data to the database
-//        contactUsRepository.save(contactUs);
-//
-//        return ResponseEntity.ok("Contact saved successfully!");
-//    }
-//}
 package com.example.controller;
-
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.ContactUs;
 import com.example.CustomerForm;
-import com.example.repository.ContactUsRepository;
 import com.example.repository.CustomerFormRepository;
+import com.google.common.net.MediaType;
+/*
 @Controller
 public class CustomerFormController {
 	
@@ -97,16 +23,6 @@ public class CustomerFormController {
 		  model.addAttribute("contactUs", new CustomerForm()); 
 		  return "CustomerForm"; // The
 		  }
-	
-//	    @PostMapping("/customerform")
-//	    public String submitContactUsForm(@ModelAttribute CustomerForm contactUs) {
-//	        // Save the form data to the database
-//	        contactUsRepository.save(contactUs);
-//	        
-//	        // Redirect to the success page
-//	        return "redirect:/success";
-//	    }
-		  
 		  @PostMapping("/customerform")
 		  public String submitContactUsForm(@ModelAttribute CustomerForm contactUs,
 		                                     @RequestParam String postId, // Capture postId from form submission
@@ -114,9 +30,9 @@ public class CustomerFormController {
 		                                     @RequestParam String department) { // Capture department
 
 		      // Save the form data to the database
-		      contactUs.setPostId(postId); // Assuming you have a field in CustomerForm for postId
-		      contactUs.setUserId(userId); // Assuming you have a field in CustomerForm for userId
-		      contactUs.setDepartment(department); // Assuming you have a field in CustomerForm for department
+		      contactUs.setPostId(postId); 
+		      contactUs.setUserId(userId); 
+		      contactUs.setDepartment(department); 
 		      contactUsRepository.save(contactUs);
 
 		      // Redirect to the success page
@@ -125,4 +41,111 @@ public class CustomerFormController {
 
 		  
 	}
+*/
+@Controller
+public class CustomerFormController {
 
+    @Autowired
+    private CustomerFormRepository customerFormRepository;
+
+    // GET - Show form for creating a new customer
+    @GetMapping("/customerform")
+    public String showCustomerForm(Model model) {
+        model.addAttribute("customerForm", new CustomerForm());
+        return "CustomerForm"; // Display the form page
+    }
+
+    // GET - Retrieve all customer form entries
+    @GetMapping("/customerforms")
+    @ResponseBody
+    public List<CustomerForm> getAllCustomerForms() {
+        return customerFormRepository.findAll();
+    }
+
+    /*
+    // POST - Create a new customer form entry
+    @PostMapping("/customerform")
+    @ResponseBody
+    public ResponseEntity<String> submitCustomerForm(@RequestBody CustomerForm customerForm) {
+
+        // Save the form data to the database
+        customerFormRepository.save(customerForm);
+
+        // Return a success message as JSON
+        return ResponseEntity.ok("Customer form submitted successfully!");
+    }
+
+*/
+    
+    // POST - Handle JSON submission
+    @PostMapping(value = "/customerform", consumes = "application/json")
+    @ResponseBody
+    public ResponseEntity<String> submitCustomerFormJson(@RequestBody CustomerForm customerForm) {
+        // Save the form data to the database
+        customerFormRepository.save(customerForm);
+
+        // Return a success message as JSON
+        return ResponseEntity.ok("Customer form submitted successfully");
+    }
+
+    // POST - Handle form submission (application/x-www-form-urlencoded)
+    @PostMapping(value = "/customerform")
+    public String submitCustomerFormForm(
+            @RequestParam String name,
+            @RequestParam String phoneNumber,
+            @RequestParam String email,
+            @RequestParam String comment,
+            @RequestParam String date) {
+        
+        // Create a new CustomerForm object and set the fields
+        CustomerForm customerForm = new CustomerForm();
+        customerForm.setName(name);
+        customerForm.setPhoneNumber(phoneNumber);
+        customerForm.setEmail(email);
+        customerForm.setComment(comment);
+        customerForm.setDate(date);
+
+        // Save the form data to the database
+        customerFormRepository.save(customerForm);
+
+        // Redirect to the success page after submission
+        return "redirect:/success"; // Redirect to success page
+    }
+    
+    // GET - Retrieve a specific form entry by ID
+    @GetMapping("/customerform/{id}")
+    @ResponseBody
+    public CustomerForm getCustomerFormById(@PathVariable Long id) {
+        return customerFormRepository.findById(id).orElse(null);
+    }
+
+    // PUT - Update an existing customer form entry by ID
+    @PutMapping("/customerform/{id}")
+    @ResponseBody
+    public String updateCustomerForm(@PathVariable Long id,
+                                     @RequestBody CustomerForm updatedCustomerForm) {
+        return customerFormRepository.findById(id)
+            .map(existingForm -> {
+                existingForm.setName(updatedCustomerForm.getName());
+                existingForm.setPhoneNumber(updatedCustomerForm.getPhoneNumber());
+                existingForm.setEmail(updatedCustomerForm.getEmail());
+                existingForm.setComment(updatedCustomerForm.getComment());
+                existingForm.setDate(updatedCustomerForm.getDate());
+                customerFormRepository.save(existingForm);
+                return "Customer form updated successfully!";
+            })
+            .orElse("Customer form not found");
+    }
+
+    // DELETE - Remove a customer form entry by ID
+    @DeleteMapping("/customerform/{id}")
+    @ResponseBody
+    public String deleteCustomerForm(@PathVariable Long id) {
+        if (customerFormRepository.existsById(id)) {
+            customerFormRepository.deleteById(id);
+            return "Customer form deleted successfully!";
+        } else {
+            return "Customer form not found";
+        }
+    }
+}

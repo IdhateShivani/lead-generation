@@ -416,14 +416,59 @@
               </div>
             </div>
           </div><!-- End Card with an image on left -->
+           <div class="container my-3">
+    <!-- <h2>All Posts</h2>
+    <div id="user" class="row">
+        <div th:each="post : ${posts}" class="col-md-4">
+            <div class="card mb-3">
+                Display the image correctly
+                <img th:src="@{|${post.image}|}" class="card-img-top" alt="Post Image" style="max-height: 200px;" />
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${post.title}"></h5>
+                    <p class="card-text" th:text="${post.description}"></p>
+                    <p class="card-text">Department: <span th:text="${post.department}"></span></p>
+                    <p class="card-text">Date: <span th:text="${post.date}"></span></p>
+                    <p class="card-text">Time: <span th:text="${post.time}"></span></p>
+                    <p class="fw-bold fs-5">Amount: <span th:text="${post.amount}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+           
+ -->       
+ 
+ <div class="container my-3">
+    <h2>All Posts</h2>
+    <div id="user" class="row">
+        <div th:each="post : ${posts}" class="col-md-4">
+            <div class="card mb-3">
+                <!-- Display the image correctly -->
+                <img th:src="${post.image}" class="card-img-top" alt="Post Image" style="max-height: 200px;" />
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${post.title}"></h5>
+                    <p class="card-text" th:text="${post.description}"></p>
+                    <p class="card-text">Department: <span th:text="${post.department}"></span></p>
+                    <p class="card-text">Date: <span th:text="${post.date}"></span></p>
+                    <p class="card-text">Time: <span th:text="${post.time}"></span></p>
+                    <p class="fw-bold fs-5">Amount: <span th:text="${post.amount}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
         </div>
 
       
 
       </div>
     </section>
-
-  </main><!-- End #main -->
+      </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">

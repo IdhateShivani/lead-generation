@@ -147,9 +147,59 @@
       <!-- single post card end -->
     </div>
     
-    
-    
-    
+  <!--  
+ <div class="container my-3">
+    <h2>All Posts</h2>
+    <div id="all-posts" class="row">
+        <div th:each="post : ${posts}" class="col-md-4">
+            <div class="card mb-3">
+                 Ensure the image path is correctly retrieved 
+                <img th:src="@{${post.image}}" class="card-img-top" alt="Post Image" />
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${post.title}"></h5>
+                    <p class="card-text" th:text="${post.description}"></p>
+                    <p class="fw-bold fs-5">Amount: <span th:text="${post.amount}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+-->
+
+<div class="container my-3" data-aos="fade-up">
+   
+    <div id="all-posts" class="row row-cols-1">
+        <div th:each="post : ${posts}" class="col mb-3">
+            <!-- Single Post Card Start -->
+            <div class="row">
+                <div class="col col-md-4">
+                    <img th:src="@{${post.image}}" class="img-fluid rounded-2" alt="Post Image" />
+                </div>
+                <div class="col col-md-8 mt-3 mt-md-0 px-4">
+                    <h3 class="fw-bold" th:text="${post.title}"></h3>
+                    <p th:text="${post.description}"></p>
+                    <p class="fw-bold fs-5">Amount: <span th:text="${post.amount}"></span></p>
+                    <div class="d-flex align-items-center gap-3">
+    <button class="buttoncss ms-0" onclick="toggleLink(this)">
+        Get a Link
+    </button>
+    <p class="mb-0 d-none link">
+        <span class="fw-bold">Link:</span> 
+        <a th:href="@{/customerform}" target="_blank">Open Form</a>
+    </p>
+</div>
+
+                </div>
+            </div>
+            <!-- Single Post Card End -->
+        </div>
+    </div>
+</div>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
     <footer id="footer" class="footer dark-background">
       <div class="container">
@@ -206,18 +256,7 @@
     <script src="assets/js/main.js"></script>
 
     <script>
-      // let linkSection = document.getElementById("link-section");
-      // let showLinkBtn = document.getElementById("show-link");
-
-      // // function showLink() {
-      // //   linkContainer.addEventListener('click')
-      // //   linkSection.classList.remove("d-none");
-      // // }
-
-      // showLinkBtn.addEventListener("click", (e) => {
-      //   e.target.nextElementSibling.classList.remove("d-none");
-      // });
-
+     
       function toggleLink(button) {
         const linkParagraph = button.nextElementSibling;
 

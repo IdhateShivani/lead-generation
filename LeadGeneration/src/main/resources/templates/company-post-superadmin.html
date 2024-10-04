@@ -453,7 +453,8 @@
               </div>
             </div>
           </div><!-- End Card with an image on left -->
-
+          
+          
           <!-- Card with an image on left -->
           <div class="card mb-3">
             <div class="row g-0">
@@ -522,6 +523,67 @@
 
       </div>
     </section>
+ <!--<h1>Company Posts</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Department</th>
+                
+                <th>Image</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.title}"></td>
+                <td th:text="${post.description}"></td>
+                <td th:text="${post.department}"></td>
+                 <td>
+                    <img th:src="${post.image}" alt="Post Image" width="100"/>
+                </td>
+                <td th:text="${post.amount}"></td>
+               
+            </tr>
+        </tbody>
+    </table>
+          
+-->
+
+ <div class="container">
+        <!--<h1 class="my-4">Company Posts</h1>-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div th:each="post : ${posts}" class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img th:src="${post.image}" class="img-fluid rounded-start" alt="Post Image">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title" th:text="${post.title}"></h5>
+                                        <p class="card-text" th:text="${post.description}"></p>
+                                        <p class="card-text">
+                                            <a href="#" class="btn btn-primary">Button</a>
+                                        </p>
+                                        <a href="#" class="card-link">Card link</a>
+                                        <a href="#" class="card-link">Another link</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
   </main><!-- End #main -->
 
